@@ -325,8 +325,8 @@ public class DeterministicDiceRoller : MonoBehaviour
         if (addForce)
         {
             //Add Force
-            Vector3 force = Vector3.back * Random.Range(-400.0f, 400.0f) + Vector3.up * Random.Range(200.0f, 400.0f) + Vector3.right * Random.Range(-400.0f, 400.0f);
-            dice.GetComponent<Rigidbody>().AddForce(force * forceMultiplier);
+            Vector3 force = Vector3.back * Random.Range(-50.0f, -60.0f) + Vector3.up * Random.Range(70.0f, 80.0f) + Vector3.right * Random.Range(-30.0f, 30.0f);
+            dice.GetComponent<Rigidbody>().AddForce(force * forceMultiplier * 0.1f);
         }
     }
 
@@ -336,8 +336,8 @@ public class DeterministicDiceRoller : MonoBehaviour
         if (addTorque)
         {
             //Add Torque
-            dice.GetComponent<Rigidbody>().maxAngularVelocity = 100;
-            simulatedTorque = new Vector3(UnityEngine.Random.Range(10, 180), UnityEngine.Random.Range(10, 180), UnityEngine.Random.Range(10, 180));
+            dice.GetComponent<Rigidbody>().maxAngularVelocity = 10;
+            simulatedTorque = new Vector3(UnityEngine.Random.Range(10, 180), UnityEngine.Random.Range(10, 180), UnityEngine.Random.Range(10, 180)) * 0.01f;
             dice.GetComponent<Rigidbody>().AddTorque(simulatedTorque * torqueMultiplier);
         }
     }
