@@ -325,7 +325,7 @@ public class DeterministicDiceRoller : MonoBehaviour
         if (addForce)
         {
             //Add Force
-            Vector3 force = Vector3.back * Random.Range(-50.0f, -60.0f) + Vector3.up * Random.Range(70.0f, 80.0f) + Vector3.right * Random.Range(-30.0f, 30.0f);
+            Vector3 force = Vector3.back * Random.Range(-50.0f, -55.0f) + Vector3.up * Random.Range(70.0f, 75.0f) + Vector3.right * Random.Range(-20.0f, 20.0f);
             dice.GetComponent<Rigidbody>().AddForce(force * forceMultiplier * 0.1f);
         }
     }
