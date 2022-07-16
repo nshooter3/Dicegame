@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93343e4c3068c8e4ea2e22fafc6f1fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 40
   initAttack: 0
   initDefense: 0
   enemyActions:
@@ -63,6 +63,7 @@ MonoBehaviour:
     enemyBuffType: 0
   healthBar: {fileID: 1315701291805265594}
   intent: {fileID: 5172530593273249933}
+  stats: {fileID: 7964969816792519173}
   dead: 0
 --- !u!1001 &954985272392184380
 PrefabInstance:
@@ -196,6 +197,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa8f175768d35da419987579dd3f32c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7964969816792519173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7190432016381911097, guid: 1fa3e95bde5c0ed468b497d8ac27f3ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 954985272392184380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7642a9e6e5e860b4388606566030651d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2966194291162906415

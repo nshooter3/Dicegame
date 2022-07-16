@@ -21,6 +21,11 @@ public class EnemyManager : MonoBehaviour
         StartCoroutine(AllEnemiesAttackCoroutine());
     }
 
+    public void AllEnemiesIncrementActionIndex()
+    {
+        enemies.ForEach(p => p.IncrementActionIndex());
+    }
+
     private IEnumerator AllEnemiesAttackCoroutine(float postAttackDelay = 1f)
     {
         foreach (Enemy enemy in enemies)

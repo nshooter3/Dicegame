@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     private HealthBar healthBar;
     [SerializeField]
     private EnemyIntentManager intent;
+    [SerializeField]
+    private StatsSprites stats;
 
     private int curHealth;
     public bool dead;
@@ -40,7 +42,7 @@ public class Enemy : MonoBehaviour
         switch (enemyActions[actionIndex].enemyActionType)
         {
             case EnemyAction.EnemyActionType.Attack:
-                intent.SetAttack(enemyActions[actionIndex].amount, enemyActions[actionIndex].numTimes);
+                intent.SetAttack(enemyActions[actionIndex].amount + curAttack, enemyActions[actionIndex].numTimes);
                 break;
             case EnemyAction.EnemyActionType.StrengthBuff:
                 intent.SetStrengthBuff(enemyActions[actionIndex].amount, enemyActions[actionIndex].enemyBuffType == EnemyAction.EnemyBuffType.All);
@@ -66,6 +68,10 @@ public class Enemy : MonoBehaviour
                 break;
         }
         intent.HideAll();
+    }
+
+    public void IncrementActionIndex()
+    {
         actionIndex = (actionIndex + 1) % enemyActions.Count;
     }
 
@@ -73,7 +79,7 @@ public class Enemy : MonoBehaviour
     {
         for (int i = 0; i < numTimes; i++)
         {
-            GameManager.instance.playerTurnManager.TakeDamage(damage);
+            GameManager.instance.playerTurnManager.TakeDamage(damage + curAttack);
             yield return new WaitForSeconds(betweenAttackDelay);
         }
         yield return new WaitForSeconds(postAttackDelay);
@@ -90,6 +96,8 @@ public class Enemy : MonoBehaviour
             curAttack += amount;
             //TODO: BuffAllEnemies
         }
+        GameManager.instance.enemyManager.AllEnemiesShowIntent();
+        stats.SetAttack(curAttack);
         yield return new WaitForSeconds(postBuffDelay);
     }
 
@@ -104,11 +112,13 @@ public class Enemy : MonoBehaviour
             curDefense += amount;
             //TODO: BuffAllEnemies
         }
+        stats.SetDefense(curAttack);
         yield return new WaitForSeconds(postBuffDelay);
     }
 
     public void TakeDamage(int damage)
     {
+        damage = Mathf.Max(damage - curDefense, 0);
         curHealth = Mathf.Max(0, curHealth - damage);
         Debug.Log("Enemy take " + damage + " damage! Cur health: " + curHealth);
         healthBar.SetHealth(curHealth, maxHealth);

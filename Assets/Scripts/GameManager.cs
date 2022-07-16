@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
 
     void EnemyTurnExit()
     {
+        enemyManager.AllEnemiesIncrementActionIndex();
         PlayerTurnEnter();
     }
 

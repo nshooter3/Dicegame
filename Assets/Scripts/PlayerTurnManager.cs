@@ -145,6 +145,8 @@ public class PlayerTurnManager : MonoBehaviour
     void AttackEnter()
     {
         Debug.Log("ATTACK!");
+        curEnergy--;
+        playerUI.SetEnergy(curEnergy, maxEnergy);
         playerTurnState = PlayerTurnState.Attack;
         GameManager.instance.diceManager.Roll(OnDiceEndRoll);
     }
@@ -156,8 +158,6 @@ public class PlayerTurnManager : MonoBehaviour
 
     void AttackExit()
     {
-        curEnergy--;
-        playerUI.SetEnergy(curEnergy, maxEnergy);
         if (curEnergy > 0)
         {
             PickDiceEnter();

@@ -11445,7 +11445,7 @@ MonoBehaviour:
   originalPosition: []
   originalRotation: []
   addForce: 1
-  forceMultiplier: 32
+  forceMultiplier: 35
   addTorque: 1
   torqueMultiplier: 15
   totalSimulationSteps: 0
