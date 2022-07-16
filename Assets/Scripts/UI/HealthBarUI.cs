@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class HealthBar : MonoBehaviour
+public class HealthBarUI : MonoBehaviour
 {
     [SerializeField]
     private GameObject front, tickDown;
     [SerializeField]
     private TextMeshPro textMesh;
-    [SerializeField]
-    private TextMeshProUGUI textMeshUI;
-    [SerializeField]
-    private bool useTextMeshUI = false;
 
     private float initWidth;
     private float curScale, tickdownScale;
@@ -52,11 +48,11 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(int curHealth, int maxHealth, bool tookDamage = true)
     {
-        //Debug.Log("CUR HEALTH " + curHealth + ", MAX HEALTH " + maxHealth);
+        Debug.Log("CUR HEALTH " + curHealth + ", MAX HEALTH " + maxHealth);
         curScale = (curHealth / (float)maxHealth);
-        //Debug.Log("CurScale " + curScale);
+        Debug.Log("CurScale " + curScale);
         SetWidth(front.transform, curScale);
-        SetText(curHealth + "/" + maxHealth);
+        textMesh.text = curHealth + "/" + maxHealth;
         if (tookDamage && !tickingDown)
         {
             tickingDown = true;
@@ -69,17 +65,5 @@ public class HealthBar : MonoBehaviour
         Vector3 temp = trans.localScale;
         temp.x = scale * initWidth;
         trans.localScale = temp;
-    }
-
-    private void SetText(string text)
-    {
-        if (useTextMeshUI)
-        {
-            textMeshUI.text = text;
-        }
-        else
-        {
-            textMesh.text = text;
-        }
     }
 }

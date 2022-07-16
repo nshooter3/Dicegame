@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class PlayerTurnManager : MonoBehaviour
 {
-    public enum PlayerTurnState { Intro, PickDice, PickEnemy, Attack, ShuffleBag, Inactive};
+    [SerializeField]
+    private int maxHealth;
+    [SerializeField]
+    private int initAttack = 0, initDefense = 0;
+    [SerializeField]
+    private PlayerUI playerUI;
+
+    public enum PlayerTurnState { Intro, PickDice, PickEnemy, Attack, Inactive};
     public PlayerTurnState playerTurnState = PlayerTurnState.Intro;
 
-    float curEnergy, maxEnergy = 3;
+    private int curEnergy, maxEnergy = 3;
+    private int currentHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -32,16 +40,18 @@ public class PlayerTurnManager : MonoBehaviour
             case PlayerTurnState.Attack:
                 AttackUpdate();
                 break;
-            case PlayerTurnState.ShuffleBag:
-                ShuffleBagUpdate();
-                break;
         }
     }
+
+    // ***********************************
+    // UTIL FUNCTIONS
+    // ***********************************
 
     public void StartPlayerTurn()
     {
         Debug.Log("START PLAYER TURN");
         IntroEnter();
+        playerUI.SetEnergy(maxEnergy, maxEnergy);
     }
 
     public bool IsDone()
@@ -53,6 +63,21 @@ public class PlayerTurnManager : MonoBehaviour
     {
         GameManager.instance.enemyManager.DamageTargetedEnemy(0, result);
         AttackExit();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth = Mathf.Max(0, currentHealth - damage);
+        playerUI.SetHealth(currentHealth, maxHealth);
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        //TODO: Die already scum
     }
 
     // ***********************************
@@ -132,6 +157,7 @@ public class PlayerTurnManager : MonoBehaviour
     void AttackExit()
     {
         curEnergy--;
+        playerUI.SetEnergy(curEnergy, maxEnergy);
         if (curEnergy > 0)
         {
             PickDiceEnter();
@@ -144,22 +170,8 @@ public class PlayerTurnManager : MonoBehaviour
     }
 
     // ***********************************
-    // ATTACK FUNCTIONS
+    // INACTIVE FUNCTIONS
     // ***********************************
-    void ShuffleBagEnter()
-    {
-
-    }
-
-    void ShuffleBagUpdate()
-    {
-
-    }
-
-    void ShuffleBagExit()
-    {
-
-    }
 
     void EnterInactive()
     {

@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
     void PlayerTurnEnter()
     {
         battleState = BattleState.PlayerTurn;
+        enemyManager.AllEnemiesShowIntent();
         playerTurnManager.StartPlayerTurn();
     }
 
@@ -102,7 +103,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("ENEMY ATTACK");
         battleState = BattleState.EnemyTurn;
-        EnemyTurnExit();
+        enemyManager.AllEnemiesAttack(EnemyTurnExit);
     }
 
     void EnemyTurnUpdate()

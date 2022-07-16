@@ -7,16 +7,29 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private List<Enemy> enemies;
 
-    void ClearDeadEnemiesFromList()
+    public delegate void OnFinishAttack();
+    public OnFinishAttack onFinishAttack;
+
+    public void AllEnemiesShowIntent()
     {
-        for (int i = 0; i < enemies.Count; i++)
+        enemies.ForEach(p => p.SetIntent());
+    }
+
+    public void AllEnemiesAttack(OnFinishAttack callback)
+    {
+        onFinishAttack += callback;
+        StartCoroutine(AllEnemiesAttackCoroutine());
+    }
+
+    private IEnumerator AllEnemiesAttackCoroutine(float postAttackDelay = 1f)
+    {
+        foreach (Enemy enemy in enemies)
         {
-            if (enemies[i].dead)
-            {
-                enemies.RemoveAt(i);
-                i--;
-            }
+            yield return StartCoroutine(enemy.PerformAction());
         }
+        yield return new WaitForSeconds(postAttackDelay);
+        onFinishAttack();
+        onFinishAttack = null;
     }
 
     public void DamageTargetedEnemy(int targetIndex, int damage)
@@ -29,5 +42,17 @@ public class EnemyManager : MonoBehaviour
     {
         enemies.ForEach(p => p.TakeDamage(damage));
         ClearDeadEnemiesFromList();
+    }
+
+    void ClearDeadEnemiesFromList()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies[i].dead)
+            {
+                enemies.RemoveAt(i);
+                i--;
+            }
+        }
     }
 }
