@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public EnemyManager enemyManager;
     public PlayerTurnManager playerTurnManager;
+    public DiceManager diceManager;
 
     public enum BattleState { Intro, PlayerTurn, EnemyTurn, Victory, Defeat };
     public BattleState battleState = BattleState.Intro;

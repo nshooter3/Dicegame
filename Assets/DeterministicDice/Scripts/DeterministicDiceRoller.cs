@@ -34,7 +34,7 @@ public class DeterministicDiceRoller : MonoBehaviour
     private RecordedInformation[] recordInformationdice5 = new RecordedInformation[maxiterations];
     private RecordedInformation[] recordInformationdice6 = new RecordedInformation[maxiterations];
     private RecordedInformation[] recordInformationdice7 = new RecordedInformation[maxiterations];
-    private bool simulationDone = false;
+    public bool simulationDone = false;
     private bool recordDiceRoll = false;
     private bool correctDiceRotation = false;
     private bool storeDices = false;

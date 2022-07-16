@@ -49,6 +49,12 @@ public class PlayerTurnManager : MonoBehaviour
         return playerTurnState == PlayerTurnState.Inactive;
     }
 
+    public void OnDiceEndRoll(int result)
+    {
+        GameManager.instance.enemyManager.DamageTargetedEnemy(0, result);
+        AttackExit();
+    }
+
     // ***********************************
     // INTRO FUNCTIONS
     // ***********************************
@@ -115,8 +121,7 @@ public class PlayerTurnManager : MonoBehaviour
     {
         Debug.Log("ATTACK!");
         playerTurnState = PlayerTurnState.Attack;
-        GameManager.instance.enemyManager.DamageTargetedEnemy(0, 10);
-        AttackExit();
+        GameManager.instance.diceManager.Roll(OnDiceEndRoll);
     }
 
     void AttackUpdate()
