@@ -1447,7 +1447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93343e4c3068c8e4ea2e22fafc6f1fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 20
   healthBar: {fileID: 1220132690}
   dead: 0
 --- !u!4 &703094228 stripped
@@ -4969,6 +4969,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1744406165}
     m_Modifications:
+    - target: {fileID: 1216099382635170500, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1315701291286583285, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 1315701292362017850, guid: 0378b16cc5bb10b45bbb048061179682,
         type: 3}
       propertyPath: m_Name
@@ -5028,6 +5038,77 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315701292952516445, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315701293146181560, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315701293275697757, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395389728604957902, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395389728604957902, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395389728604957902, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229658542365047027, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_text
+      value: 100/100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229658542365047027, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229658542365047027, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
+    - target: {fileID: 8229658542365047027, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229658542365047027, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229658542365047027, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 8229658542365047027, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229658542365047027, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0378b16cc5bb10b45bbb048061179682, type: 3}
@@ -11337,6 +11418,7 @@ MonoBehaviour:
   totalSimulationSteps: 0
   replaySteps: 0
   replaySpeed: 50
+  simulationDone: 0
   rbArray: []
   simulationStep: 0.035
   unsetList: []

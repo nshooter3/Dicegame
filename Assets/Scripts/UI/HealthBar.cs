@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
     [SerializeField]
     private GameObject front, tickDown;
+    [SerializeField]
+    private TextMeshPro textMesh;
 
     private float initWidth;
     private float curScale, tickdownScale;
@@ -15,7 +18,7 @@ public class HealthBar : MonoBehaviour
     private const float TICKDOWN_SPEED = 1f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         initWidth = front.transform.localScale.x;
         curScale = 1f;
@@ -43,11 +46,14 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    public void SetHealth(int curHealth, int maxHealth)
+    public void SetHealth(int curHealth, int maxHealth, bool tookDamage = true)
     {
+        Debug.Log("CUR HEALTH " + curHealth + ", MAX HEALTH " + maxHealth);
         curScale = (curHealth / (float)maxHealth);
+        Debug.Log("CurScale " + curScale);
         SetWidth(front.transform, curScale);
-        if (!tickingDown)
+        textMesh.text = curHealth + "/" + maxHealth;
+        if (tookDamage && !tickingDown)
         {
             tickingDown = true;
             tickdownTimer = TICKDOWN_TIME;
