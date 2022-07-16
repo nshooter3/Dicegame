@@ -8,6 +8,8 @@ public class PlayerUI : MonoBehaviour
     private HealthBar healthBar;
     [SerializeField]
     private EnergyPipManager pipManager;
+    [SerializeField]
+    private StatsUI stats;
 
     public void SetHealth(int curHealth, int maxHealth, bool tookDamage = true)
     {
@@ -18,5 +20,15 @@ public class PlayerUI : MonoBehaviour
     {
         pipManager.SetMaxPips(maxEnergy);
         pipManager.SetCurrentPips(curEnergy);
+    }
+
+    public void SetAttack(int attack)
+    {
+        stats.SetAttack(attack);
+    }
+
+    public void SetDefense(int defense)
+    {
+        stats.SetDefense(defense);
     }
 }

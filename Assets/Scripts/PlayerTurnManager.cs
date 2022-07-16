@@ -16,11 +16,14 @@ public class PlayerTurnManager : MonoBehaviour
 
     private int curEnergy, maxEnergy = 3;
     private int currentHealth;
+    private int curAttack, curDefense;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        curAttack = initAttack;
+        curDefense = initDefense;
     }
 
     // Update is called once per frame
@@ -61,12 +64,47 @@ public class PlayerTurnManager : MonoBehaviour
 
     public void OnDiceEndRoll(int result)
     {
-        GameManager.instance.enemyManager.DamageTargetedEnemy(0, result);
+        StartCoroutine(DamageEnemyCoroutine(result));
+    }
+
+    private IEnumerator DamageEnemyCoroutine(int result)
+    {
+        if (result == 1)
+        {
+            BuffRandomStat();
+            yield return new WaitForSeconds(1f);
+        }
+        GameManager.instance.enemyManager.DamageTargetedEnemy(0, result + curAttack);
         AttackExit();
+    }
+
+    public void BuffRandomStat()
+    {
+        if (Random.Range(0, 2) == 1)
+        {
+            BuffAttack(1);
+        }
+        else
+        {
+            BuffDefense(1);
+        }
+    }
+
+    public void BuffAttack(int amount)
+    {
+        curAttack += amount;
+        playerUI.SetAttack(curAttack);
+    }
+
+    public void BuffDefense(int amount)
+    {
+        curDefense += amount;
+        playerUI.SetDefense(curDefense);
     }
 
     public void TakeDamage(int damage)
     {
+        damage = Mathf.Max(damage - curDefense, 0);
         currentHealth = Mathf.Max(0, currentHealth - damage);
         playerUI.SetHealth(currentHealth, maxHealth);
         if (currentHealth <= 0)
@@ -166,7 +204,6 @@ public class PlayerTurnManager : MonoBehaviour
         {
             EnterInactive();
         }
-        Debug.Log("ENERGY LEFT: " + curEnergy);
     }
 
     // ***********************************

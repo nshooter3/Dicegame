@@ -1657,6 +1657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 5177309294464165951}
   pipManager: {fileID: 2833329001906200257}
+  stats: {fileID: 1653966532736761910}
 --- !u!1001 &4175221080087572758
 PrefabInstance:
   m_ObjectHideFlags: 0
