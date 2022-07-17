@@ -22,6 +22,7 @@ public class NumberPoolable : MonoBehaviour
         anim.SetTrigger("SmallHit");
         StartCoroutine(AvailableCoroutine());
     }
+
     public void Hit(Vector2 position)
     {
         RandomlyOffsetPosition(position);
@@ -36,10 +37,38 @@ public class NumberPoolable : MonoBehaviour
         StartCoroutine(AvailableCoroutine());
     }
 
+    public void AttackBuff(Vector2 position)
+    {
+        RandomlyOffsetPosition(position);
+        anim.SetTrigger("AttackBuff");
+        StartCoroutine(AvailableCoroutine());
+    }
+
+    public void DefenseBuff(Vector2 position)
+    {
+        RandomlyOffsetPosition(position);
+        anim.SetTrigger("DefenseBuff");
+        StartCoroutine(AvailableCoroutine());
+    }
+
     public void PlayerHit(Vector2 position)
     {
         RandomlyOffsetPosition(position, true);
         anim.SetTrigger("PlayerHit");
+        StartCoroutine(AvailableCoroutine());
+    }
+
+    public void PlayerAttackBuff(Vector2 position)
+    {
+        RandomlyOffsetPosition(position, true);
+        anim.SetTrigger("PlayerAttackBuff");
+        StartCoroutine(AvailableCoroutine());
+    }
+
+    public void PlayerDefenseBuff(Vector2 position)
+    {
+        RandomlyOffsetPosition(position, true);
+        anim.SetTrigger("PlayerDefenseBuff");
         StartCoroutine(AvailableCoroutine());
     }
 

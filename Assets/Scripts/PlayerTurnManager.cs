@@ -104,12 +104,14 @@ public class PlayerTurnManager : MonoBehaviour
 
     public void BuffAttack(int amount)
     {
+        NumberPool.instance.ShowStrengthBuff(amount, transform.position, true);
         curAttack += amount;
         playerUI.SetAttack(curAttack);
     }
 
     public void BuffDefense(int amount)
     {
+        NumberPool.instance.ShowDefenseBuff(amount, transform.position, true);
         curDefense += amount;
         playerUI.SetDefense(curDefense);
     }

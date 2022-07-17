@@ -97,6 +97,7 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator StrengthBuff(int amount, bool isAll)
     {
+        NumberPool.instance.ShowStrengthBuff(amount, transform.position, false);
         anim.SetTrigger("Buff");
         yield return new WaitForSeconds(0.35f);
         attackBuffParticles.Play();
@@ -116,6 +117,7 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator DefenseBuff(int amount, bool isAll)
     {
+        NumberPool.instance.ShowDefenseBuff(amount, transform.position, false);
         anim.SetTrigger("Buff");
         yield return new WaitForSeconds(0.35f);
         defenseBuffParticles.Play();

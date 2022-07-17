@@ -68,6 +68,40 @@ public class NumberPool : MonoBehaviour
         }
     }
 
+    public void ShowStrengthBuff(int num, Vector3 pos, bool isPlayer = false)
+    {
+        string str = "+" + num + " Strength";
+        NumberPoolable numPoolable = GetAvailableNumber();
+        numPoolable.SetNumText(str);
+
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(pos);
+        if (isPlayer)
+        {
+            numPoolable.PlayerAttackBuff(screenPosition);
+        }
+        else
+        {
+            numPoolable.AttackBuff(screenPosition);
+        }
+    }
+
+    public void ShowDefenseBuff(int num, Vector3 pos, bool isPlayer = false)
+    {
+        string str = "+" + num + " Defense";
+        NumberPoolable numPoolable = GetAvailableNumber();
+        numPoolable.SetNumText(str);
+
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(pos);
+        if (isPlayer)
+        {
+            numPoolable.PlayerDefenseBuff(screenPosition);
+        }
+        else
+        {
+            numPoolable.DefenseBuff(screenPosition);
+        }
+    }
+
     private NumberPoolable GetAvailableNumber()
     {
         foreach (NumberPoolable num in numbers)
