@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator Attack(int damage, int numTimes)
     {
         anim.SetTrigger("Attack");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         for (int i = 0; i < numTimes; i++)
         {
             GameManager.instance.playerTurnManager.TakeDamage(damage + curAttack);

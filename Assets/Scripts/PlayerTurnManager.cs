@@ -12,6 +12,8 @@ public class PlayerTurnManager : MonoBehaviour
     private PlayerUI playerUI;
     [SerializeField]
     private Transform damageOrigin;
+    [SerializeField]
+    private TutorialText tutText;
 
     public enum PlayerTurnState { Intro, PickDice, PickEnemy, Attack, Inactive};
     public PlayerTurnState playerTurnState = PlayerTurnState.Intro;
@@ -172,6 +174,7 @@ public class PlayerTurnManager : MonoBehaviour
     // ***********************************
     void PickEnemyEnter()
     {
+        tutText.isActive = true;
         playerTurnState = PlayerTurnState.PickEnemy;
         playerUI.EnemySelectorSetActive();
     }
@@ -188,6 +191,7 @@ public class PlayerTurnManager : MonoBehaviour
 
     void PickEnemyExit()
     {
+        tutText.isActive = false;
         AttackEnter();
     }
 

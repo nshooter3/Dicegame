@@ -17,7 +17,7 @@ public class EnemyIntentManager : MonoBehaviour
         Attack.enabled = true;
         textMesh.enabled = true;
         string text = "" + damage;
-        if (numHits > 0)
+        if (numHits > 1)
         {
             text += "x" + numHits;
         }

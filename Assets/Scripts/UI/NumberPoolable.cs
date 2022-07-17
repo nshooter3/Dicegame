@@ -38,15 +38,20 @@ public class NumberPoolable : MonoBehaviour
 
     public void PlayerHit(Vector2 position)
     {
-        RandomlyOffsetPosition(position);
+        RandomlyOffsetPosition(position, true);
         anim.SetTrigger("PlayerHit");
         StartCoroutine(AvailableCoroutine());
     }
 
-    private void RandomlyOffsetPosition(Vector2 position)
+    private void RandomlyOffsetPosition(Vector2 position, bool isPlayer = false)
     {
-        position.x += Random.Range(-10f, 10f);
-        position.y += Random.Range(-10f, 10f);
+        int offset = 20;
+        if (isPlayer)
+        {
+            offset = 50;
+        }
+        position.x += Random.Range(-offset, offset);
+        position.y += Random.Range(-offset, offset);
         RectTransform rectTransform = GetComponent<RectTransform>();
         rectTransform.position = position;
         Debug.Log("set number pos to " + position);
