@@ -18,6 +18,7 @@ public class PlayerTurnManager : MonoBehaviour
     private int currentHealth;
     private int curAttack, curDefense;
     private bool attackWasCrit;
+    private Enemy targetedEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -80,7 +81,7 @@ public class PlayerTurnManager : MonoBehaviour
             //TODO: crit presentation.
             result *= 2;
         }
-        GameManager.instance.enemyManager.DamageTargetedEnemy(0, result + curAttack);
+        GameManager.instance.enemyManager.DamageTargetedEnemy(targetedEnemy, result + curAttack);
         AttackExit();
     }
 
@@ -149,14 +150,12 @@ public class PlayerTurnManager : MonoBehaviour
     void PickDiceEnter()
     {
         playerTurnState = PlayerTurnState.PickDice;
+        PickDiceExit();
     }
 
     void PickDiceUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PickDiceExit();
-        }
+        
     }
 
     void PickDiceExit()
@@ -170,12 +169,15 @@ public class PlayerTurnManager : MonoBehaviour
     void PickEnemyEnter()
     {
         playerTurnState = PlayerTurnState.PickEnemy;
-        PickEnemyExit();
     }
 
     void PickEnemyUpdate()
     {
-        
+        targetedEnemy = null;
+        if (Input.GetMouseButtonDown(0) && GameManager.instance.clickManager.CheckForClickOnEnemy(out targetedEnemy))
+        {
+            PickEnemyExit();
+        }
     }
 
     void PickEnemyExit()

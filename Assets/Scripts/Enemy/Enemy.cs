@@ -112,7 +112,7 @@ public class Enemy : MonoBehaviour
             curDefense += amount;
             //TODO: BuffAllEnemies
         }
-        stats.SetDefense(curAttack);
+        stats.SetDefense(curDefense);
         yield return new WaitForSeconds(postBuffDelay);
     }
 

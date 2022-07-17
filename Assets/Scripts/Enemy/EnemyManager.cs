@@ -37,9 +37,9 @@ public class EnemyManager : MonoBehaviour
         onFinishAttack = null;
     }
 
-    public void DamageTargetedEnemy(int targetIndex, int damage)
+    public void DamageTargetedEnemy(Enemy enemy, int damage)
     {
-        enemies[targetIndex].TakeDamage(damage);
+        enemy.TakeDamage(damage);
         ClearDeadEnemiesFromList();
     }
 
