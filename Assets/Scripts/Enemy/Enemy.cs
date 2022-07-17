@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Collider col;
     [SerializeField]
-    private ParticleSystem attackBuffParticles, defenseBuffParticles;
+    private ParticleSystem attackBuffParticles, defenseBuffParticles, deathParticles;
 
     private int curHealth;
     public bool dead;
@@ -146,6 +146,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        deathParticles.Play();
         col.enabled = false;
         enemyUI.SetActive(false);
         anim.SetTrigger("Die");
