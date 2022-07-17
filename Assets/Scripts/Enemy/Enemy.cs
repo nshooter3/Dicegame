@@ -134,6 +134,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        anim.SetTrigger("Hurt");
         damage = Mathf.Max(damage - curDefense, 0);
         curHealth = Mathf.Max(0, curHealth - damage);
         Debug.Log("Enemy take " + damage + " damage! Cur health: " + curHealth);

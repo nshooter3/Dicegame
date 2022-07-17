@@ -4841,6 +4841,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3554534498549135462, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554534498549135462, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554534498549135462, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554534498549135462, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554534498549135462, guid: 0378b16cc5bb10b45bbb048061179682,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0378b16cc5bb10b45bbb048061179682, type: 3}
 --- !u!1001 &1358150678252552029
@@ -4856,7 +4881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 765560331, guid: 54ec4d6fcbd40104593bae4cdd3440be, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1358150678138305703, guid: 54ec4d6fcbd40104593bae4cdd3440be,
         type: 3}
@@ -5324,6 +5349,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1744406165}
     m_Modifications:
+    - target: {fileID: 1427695946419834626, guid: b9433bce408819b42975c6f66b8d771b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2487130130515929783, guid: b9433bce408819b42975c6f66b8d771b,
         type: 3}
       propertyPath: maxHealth

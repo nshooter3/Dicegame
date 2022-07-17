@@ -82,6 +82,7 @@ public class PlayerTurnManager : MonoBehaviour
             result *= 2;
         }
         GameManager.instance.enemyManager.DamageTargetedEnemy(targetedEnemy, result + curAttack);
+        yield return new WaitForSeconds(0.5f);
         AttackExit();
     }
 
