@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DeterministicDice : MonoBehaviour
 {
+    [SerializeField]
+    private ParticleSystem burstParticles;
+
     // Start is called before the first frame update
     public bool mode2D;
     public bool diceSleeping;
@@ -16,6 +19,10 @@ public class DeterministicDice : MonoBehaviour
     [Range(0, 10000)]
     public float edgelandingforce = 1000f;
     public bool edgelandinginverter = false;
+    public bool hideOnSleep = false;
+
+    private float sleepPreventionTimer;
+    private const float SLEEP_PREVENTION_TIME = 0.1f;
 
     public enum diceTypeList
     {
@@ -28,21 +35,28 @@ public class DeterministicDice : MonoBehaviour
         D20 = 20,
     }
 
+    public void SetToHideOnSleep()
+    {
+        hideOnSleep = true;
+        sleepPreventionTimer = SLEEP_PREVENTION_TIME;
+    }
+
     void Start()
     {
 
         //Here you can add Torque and Force do a dice manually if you would like.
-
+        burstParticles.transform.parent = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
+        if (sleepPreventionTimer > 0f)
+        {
+            sleepPreventionTimer -= Time.deltaTime;
+        }
         //Only execute when the dice has stopped rolling
-        if (gameObject.GetComponent<Rigidbody>().IsSleeping())
-
+        else if (gameObject.GetComponent<Rigidbody>().IsSleeping())
         {
             //Only execute until we got a result
             if (!diceSleeping)
@@ -94,6 +108,13 @@ public class DeterministicDice : MonoBehaviour
                 }
             }
             diceSleeping = true;
+            if (hideOnSleep)
+            {
+                burstParticles.transform.position = transform.position;
+                burstParticles.Play();
+                hideOnSleep = false;
+                gameObject.SetActive(false);
+            }
 
             //Sometimes dices land exactly on their edge, this makes sure that they dont but applying a small downforce when they have stopped.
 
@@ -120,7 +141,6 @@ public class DeterministicDice : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().AddForceAtPosition(forceDirection * 10 * edgelandingforce, rollPosition);
             */
         }
-
         else
         {
             diceSleeping = false;

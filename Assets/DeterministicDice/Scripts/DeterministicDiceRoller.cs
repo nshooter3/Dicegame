@@ -77,6 +77,27 @@ public class DeterministicDiceRoller : MonoBehaviour
         }
     }
 
+    public void HideAllDice()
+    {
+        foreach (DeterministicDice die in dicesGameObject.GetComponentsInChildren<DeterministicDice>(true))
+        {
+            die.gameObject.SetActive(false);
+        }
+    }
+
+    public void ActivateDie(DeterministicDice.diceTypeList type)
+    {
+        HideAllDice();
+        foreach (DeterministicDice die in dicesGameObject.GetComponentsInChildren<DeterministicDice>(true))
+        {
+            if (die.diceType == type)
+            {
+                die.gameObject.SetActive(true);
+                break;
+            }
+        }
+    }
+
     //Function for recording postion of rotation of all rigidbodies.
     public void RecordPostitionAndRotationOfRidgidbodies()
     {
@@ -325,7 +346,7 @@ public class DeterministicDiceRoller : MonoBehaviour
         if (addForce)
         {
             //Add Force
-            Vector3 force = Vector3.back * Random.Range(-50.0f, -55.0f) + Vector3.up * Random.Range(70.0f, 75.0f) + Vector3.right * Random.Range(-20.0f, 20.0f);
+            Vector3 force = Vector3.back * Random.Range(-50.0f, -55.0f) + Vector3.up * Random.Range(60.0f, 65.0f) + Vector3.right * Random.Range(-20.0f, 20.0f);
             dice.GetComponent<Rigidbody>().AddForce(force * forceMultiplier * 0.1f);
         }
     }
@@ -380,6 +401,7 @@ public class DeterministicDiceRoller : MonoBehaviour
         {
             StorePosition(dice);
         }
+        HideAllDice();
     }
 
     // Update is called once per frame
@@ -450,6 +472,11 @@ public class DeterministicDiceRoller : MonoBehaviour
             int diceCount = 0;
             foreach (GameObject dice in dicesList)
             {
+                if (dice.activeSelf)
+                {
+                    dice.GetComponent<DeterministicDice>().SetToHideOnSleep();
+                }
+
                 //Restore Position of dices.
                 RestorePosition(dice, diceCount);
 

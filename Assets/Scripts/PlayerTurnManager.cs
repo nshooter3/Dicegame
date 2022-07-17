@@ -17,6 +17,7 @@ public class PlayerTurnManager : MonoBehaviour
     private int curEnergy, maxEnergy = 3;
     private int currentHealth;
     private int curAttack, curDefense;
+    private bool attackWasCrit;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +74,11 @@ public class PlayerTurnManager : MonoBehaviour
         {
             BuffRandomStat();
             yield return new WaitForSeconds(1f);
+        }
+        if (attackWasCrit)
+        {
+            //TODO: crit presentation.
+            result *= 2;
         }
         GameManager.instance.enemyManager.DamageTargetedEnemy(0, result + curAttack);
         AttackExit();
@@ -186,7 +192,7 @@ public class PlayerTurnManager : MonoBehaviour
         curEnergy--;
         playerUI.SetEnergy(curEnergy, maxEnergy);
         playerTurnState = PlayerTurnState.Attack;
-        GameManager.instance.diceManager.Roll(OnDiceEndRoll);
+        GameManager.instance.diceManager.Roll(OnDiceEndRoll, GameManager.instance.diceManager.GetRandomDieType(), out attackWasCrit);
     }
 
     void AttackUpdate()
