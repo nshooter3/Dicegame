@@ -16,6 +16,14 @@ public class Enemy : MonoBehaviour
     private EnemyIntentManager intent;
     [SerializeField]
     private StatsSprites stats;
+    [SerializeField]
+    private Animator anim;
+    [SerializeField]
+    private GameObject enemyUI;
+    [SerializeField]
+    private Collider col;
+    [SerializeField]
+    private ParticleSystem attackBuffParticles, defenseBuffParticles;
 
     private int curHealth;
     public bool dead;
@@ -75,18 +83,23 @@ public class Enemy : MonoBehaviour
         actionIndex = (actionIndex + 1) % enemyActions.Count;
     }
 
-    private IEnumerator Attack(int damage, int numTimes, float betweenAttackDelay = 0.3f, float postAttackDelay = 1f)
+    private IEnumerator Attack(int damage, int numTimes)
     {
+        anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(1.0f);
         for (int i = 0; i < numTimes; i++)
         {
             GameManager.instance.playerTurnManager.TakeDamage(damage + curAttack);
-            yield return new WaitForSeconds(betweenAttackDelay);
+            yield return new WaitForSeconds(0.3f);
         }
-        yield return new WaitForSeconds(postAttackDelay);
+        yield return new WaitForSeconds(1.0f);
     }
 
-    public IEnumerator StrengthBuff(int amount, bool isAll, float postBuffDelay = 1f)
+    public IEnumerator StrengthBuff(int amount, bool isAll)
     {
+        anim.SetTrigger("Buff");
+        yield return new WaitForSeconds(0.35f);
+        attackBuffParticles.Play();
         if (!isAll)
         {
             curAttack += amount;
@@ -98,11 +111,14 @@ public class Enemy : MonoBehaviour
         }
         GameManager.instance.enemyManager.AllEnemiesShowIntent();
         stats.SetAttack(curAttack);
-        yield return new WaitForSeconds(postBuffDelay);
+        yield return new WaitForSeconds(1.0f);
     }
 
-    public IEnumerator DefenseBuff(int amount, bool isAll, float postBuffDelay = 1f)
+    public IEnumerator DefenseBuff(int amount, bool isAll)
     {
+        anim.SetTrigger("Buff");
+        yield return new WaitForSeconds(0.35f);
+        defenseBuffParticles.Play();
         if (!isAll)
         {
             curDefense += amount;
@@ -113,7 +129,7 @@ public class Enemy : MonoBehaviour
             //TODO: BuffAllEnemies
         }
         stats.SetDefense(curDefense);
-        yield return new WaitForSeconds(postBuffDelay);
+        yield return new WaitForSeconds(1.0f);
     }
 
     public void TakeDamage(int damage)
@@ -130,6 +146,9 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        col.enabled = false;
+        enemyUI.SetActive(false);
+        anim.SetTrigger("Die");
         dead = true;
     }
 }
