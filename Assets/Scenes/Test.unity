@@ -3709,6 +3709,7 @@ MonoBehaviour:
   initAttack: 0
   initDefense: 0
   playerUI: {fileID: 1358150678252552030}
+  damageOrigin: {fileID: 0}
   playerTurnState: 0
 --- !u!4 &1759935694
 Transform:
@@ -3718,7 +3719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759935692}
   m_LocalRotation: {x: 0.14970785, y: 0, z: 0, w: 0.98873025}
-  m_LocalPosition: {x: 0, y: 5.22, z: -15}
+  m_LocalPosition: {x: 0, y: 4.97, z: -13.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4875,14 +4876,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 765560331, guid: 54ec4d6fcbd40104593bae4cdd3440be, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 765560331, guid: 54ec4d6fcbd40104593bae4cdd3440be, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1358150678138305703, guid: 54ec4d6fcbd40104593bae4cdd3440be,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4992,31 +4985,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 1358150678252552032, guid: 54ec4d6fcbd40104593bae4cdd3440be,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132129697532553082, guid: 54ec4d6fcbd40104593bae4cdd3440be,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132129697532553082, guid: 54ec4d6fcbd40104593bae4cdd3440be,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132129697532553082, guid: 54ec4d6fcbd40104593bae4cdd3440be,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132129697532553082, guid: 54ec4d6fcbd40104593bae4cdd3440be,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54ec4d6fcbd40104593bae4cdd3440be, type: 3}

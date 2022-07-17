@@ -110,6 +110,7 @@ public class DeterministicDice : MonoBehaviour
             diceSleeping = true;
             if (hideOnSleep)
             {
+                //NumberPool.instance.ShowNumber(diceRollDeterministic, transform.position, false, true);
                 burstParticles.transform.position = transform.position;
                 burstParticles.Play();
                 hideOnSleep = false;

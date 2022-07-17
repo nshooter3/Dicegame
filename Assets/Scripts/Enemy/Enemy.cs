@@ -134,6 +134,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        NumberPool.instance.ShowNumber(damage, transform.position, false, false, GameManager.instance.playerTurnManager.attackWasCrit);
         anim.SetTrigger("Hurt");
         damage = Mathf.Max(damage - curDefense, 0);
         curHealth = Mathf.Max(0, curHealth - damage);

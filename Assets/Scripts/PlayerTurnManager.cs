@@ -10,6 +10,8 @@ public class PlayerTurnManager : MonoBehaviour
     private int initAttack = 0, initDefense = 0;
     [SerializeField]
     private PlayerUI playerUI;
+    [SerializeField]
+    private Transform damageOrigin;
 
     public enum PlayerTurnState { Intro, PickDice, PickEnemy, Attack, Inactive};
     public PlayerTurnState playerTurnState = PlayerTurnState.Intro;
@@ -17,7 +19,7 @@ public class PlayerTurnManager : MonoBehaviour
     private int curEnergy, maxEnergy = 3;
     private int currentHealth;
     private int curAttack, curDefense;
-    private bool attackWasCrit;
+    public bool attackWasCrit;
     private Enemy targetedEnemy;
 
     // Start is called before the first frame update
@@ -112,6 +114,7 @@ public class PlayerTurnManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        NumberPool.instance.ShowNumber(damage, damageOrigin.position, true);
         damage = Mathf.Max(damage - curDefense, 0);
         currentHealth = Mathf.Max(0, currentHealth - damage);
         playerUI.SetHealth(currentHealth, maxHealth);

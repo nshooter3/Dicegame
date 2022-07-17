@@ -32,9 +32,9 @@ public class EnemySelector : MonoBehaviour
             if (GameManager.instance.clickManager.CheckForSelectedEnemy(out enemy))
             {
                 hasTarget = true;
-                Vector2 viewportPosition = Camera.main.WorldToScreenPoint(enemy.transform.position);
+                Vector2 ScreenPosition = Camera.main.WorldToScreenPoint(enemy.transform.position);
                 RectTransform rectTransform = GetComponent<RectTransform>();
-                rectTransform.position = viewportPosition;
+                rectTransform.position = ScreenPosition;
                 image.color = Color32.Lerp(image.color, normalCol, COLOR_FADE_SPEED * Time.deltaTime);
             }
             else
