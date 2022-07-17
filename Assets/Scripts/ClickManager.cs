@@ -31,7 +31,7 @@ public class ClickManager : MonoBehaviour
         }
     }
 
-    public bool CheckForClickOnEnemy(out Enemy enemy)
+    public bool CheckForSelectedEnemy(out Enemy enemy)
     {
         if (targetedEnemy != null)
         {

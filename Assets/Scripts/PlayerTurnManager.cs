@@ -160,7 +160,7 @@ public class PlayerTurnManager : MonoBehaviour
 
     void PickDiceExit()
     {
-        PickEnemyEnter();;
+        PickEnemyEnter();
     }
 
     // ***********************************
@@ -169,13 +169,15 @@ public class PlayerTurnManager : MonoBehaviour
     void PickEnemyEnter()
     {
         playerTurnState = PlayerTurnState.PickEnemy;
+        playerUI.EnemySelectorSetActive();
     }
 
     void PickEnemyUpdate()
     {
         targetedEnemy = null;
-        if (Input.GetMouseButtonDown(0) && GameManager.instance.clickManager.CheckForClickOnEnemy(out targetedEnemy))
+        if (Input.GetMouseButtonDown(0) && GameManager.instance.clickManager.CheckForSelectedEnemy(out targetedEnemy))
         {
+            playerUI.EnemySelectorSelectTarget();
             PickEnemyExit();
         }
     }

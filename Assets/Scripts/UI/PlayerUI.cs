@@ -10,6 +10,8 @@ public class PlayerUI : MonoBehaviour
     private EnergyPipManager pipManager;
     [SerializeField]
     private StatsUI stats;
+    [SerializeField]
+    private EnemySelector enemySelector;
 
     public void SetHealth(int curHealth, int maxHealth, bool tookDamage = true)
     {
@@ -30,5 +32,15 @@ public class PlayerUI : MonoBehaviour
     public void SetDefense(int defense)
     {
         stats.SetDefense(defense);
+    }
+
+    public void EnemySelectorSelectTarget()
+    {
+        enemySelector.SelectTarget();
+    }
+
+    public void EnemySelectorSetActive()
+    {
+        enemySelector.SetActive();
     }
 }
